@@ -12,9 +12,9 @@
                 HorizontalOptions="FillAndExpand" 
                    Text="{Binding NewContact.Name}"/>
             <Entry Placeholder="Number"
-                HorizontalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand"  
                      Text="{Binding NewContact.Number}"/>
-            <Button Text="Add" 
+            <Button Text=" Add" 
                     BackgroundColor="Black"
                     TextColor="White"
                     HorizontalOptions="FillAndExpand"

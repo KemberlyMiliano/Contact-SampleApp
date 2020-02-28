@@ -19,6 +19,11 @@ namespace ContactAppSample.ViewModels
         public ICommand OnDeleteCommand { get; set; }
         public ICommand OnMoreCommand { get; set; }
 
+        public const string Cancel = "Cancel";
+        public const string Call = "Call";
+        public const string Edit = "Edit";
+        public const string NullConstant = null;
+
         private Contact contactSelected;
         public Contact ContactSelected
         {
@@ -33,7 +38,7 @@ namespace ContactAppSample.ViewModels
         {
             GoToNewContactPageCommand = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new NewContactPage(Contacts));
+                await App.Current.MainPage.Navigation.PushAsync(new NewContactPage(Contacts, ContactSelected));
             });
 
             OnDeleteCommand = new Command<Contact>((param) =>
@@ -43,17 +48,17 @@ namespace ContactAppSample.ViewModels
 
             OnMoreCommand = new Command<Contact>(async (param) =>
             {
-                string action = await App.Current.MainPage.DisplayActionSheet(null, "Cancel", null, "Call", "Edit");
+                string action = await App.Current.MainPage.DisplayActionSheet(NullConstant, Cancel, NullConstant, Call, Edit);
                 switch (action)
                 {
-                    case "Cancel":
+                    case Cancel:
                         break;
 
-                    case "Call":
+                    case Call:
                         PlacePhoneCall(param.Number);
                         break;
 
-                    case "Edit":
+                    case Edit:
                         if (contactSelected != null)
                             await App.Current.MainPage.Navigation.PushAsync(new EditContactPage(Contacts, ContactSelected));
                         break;

@@ -15,10 +15,10 @@ namespace ContactAppSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewContactPage : ContentPage
     {
-        public NewContactPage(ObservableCollection<Contact> Contacts)
+        public NewContactPage(ObservableCollection<Contact> Contacts, Contact ContactSelected)
         {
             InitializeComponent();
-            BindingContext = new NewContactPageViewModel(Contacts);
+            BindingContext = new AddEditContactPageViewModel(Contacts, ContactSelected);
         }
     }
 }
